@@ -1,24 +1,64 @@
 import logo from './logo.svg';
 import './App.css';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { Button } from '@mui/material';
+
 
 function App() {
+
+  const theme = createTheme({
+    components: {
+      MuiButton: {
+        variants: [
+          {
+            props: (props) =>
+              props.variant === 'variant1',
+            style: {
+              backgroundColor:"red",
+              color:"white",
+              fontSize:"20px",
+              width:"300px"
+            },
+          },
+          {
+            props: (props) =>
+              props.variant === 'variant2',
+            style: {
+              backgroundColor:"brown",
+              color:"white",
+              fontSize:"20px",
+              width:"300px"
+            },
+          },
+          {
+            props: (props) =>
+              props.variant === 'variant3',
+            style: {
+              backgroundColor:"yellow",
+              color:"white",
+              fontSize:"20px",
+              width:"300px"
+            },
+          },
+        ],
+      },
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+    <>
+      <div style={{display:"flex", flexDirection:"column", marginTop:"5%"}}>
+      <Button variant="variant1">Text</Button>
+      <Button variant="variant2">Contained</Button>
+      <Button variant="variant3">Outlined</Button>
+      <Button variant="variant1">Text</Button>
+      <Button variant="variant2">Contained</Button>
+      <Button variant="variant2">Contained</Button>
+      <Button variant="variant2">Contained</Button>
+      </div>
+    </>
+    </ThemeProvider>
   );
 }
 
